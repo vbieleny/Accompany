@@ -7,6 +7,15 @@ namespace Accompany
 {
     public class Main : MBSubModuleBase
     {
+        public override void OnCampaignStart(Game game, object starterObject)
+        {
+            if (game.GameType is Campaign campaign)
+            {
+                CampaignGameStarter gameInitializer = (CampaignGameStarter)starterObject;
+                gameInitializer.AddBehavior(new AccompanyCampaignBehavior());
+            }
+        }
+
         public override void OnGameLoaded(Game game, object initializerObject)
         {
             if (game.GameType is Campaign campaign)

@@ -6,14 +6,15 @@ namespace Accompany
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, OnGameLoaded);
+            CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, OnGameStart);
+            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnGameStart);
         }
 
         public override void SyncData(IDataStore dataStore)
         {
         }
 
-        private void OnGameLoaded(CampaignGameStarter campaignGameStarter)
+        private void OnGameStart(CampaignGameStarter campaignGameStarter)
         {
             PartyInputUtils.OnInitialize();
             PartyInfoLayer.OnInitialize();
