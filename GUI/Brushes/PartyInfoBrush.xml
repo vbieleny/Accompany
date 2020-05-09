@@ -1,0 +1,37 @@
+<Brushes>
+    <Brush Name="ClickableText" FontColor="#F4E1C4FF">
+    <Animations>
+      <Animation Name="FontHoverAnimation">
+      </Animation>
+      <Animation Name="FontPressedAnimation">
+      </Animation>
+      <Animation Name="FontDefaultAnimation">
+      </Animation>
+    </Animations>
+    <Layers>
+      <BrushLayer Name="Default" Color="#FFFFFFFF" />
+      <BrushLayer Name="HoverLayer" Color="#FFFF00FF" />
+    </Layers>
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" TextGlowColor="#FFFFFF11" TextGlowRadius="0.1" AnimationToPlayOnBegin="FontDefaultAnimation" FontSize="22">
+        <BrushLayer Name="Default" FontColor="#F4E1C4FF" />
+      </Style>
+      <Style Name="Hovered" FontColor="#F3C697FF" TextGlowColor="#F3C69711" AnimationToPlayOnBegin="FontHoverAnimation">
+        <BrushLayer Name="HoverLayer" FontColor="#F3C697FF" />
+      </Style>
+      <Style Name="Pressed" FontColor="#B57F5CFF" TextGlowColor="#B57F5C11" AnimationToPlayOnBegin="FontPressedAnimation">
+        <BrushLayer Name="Default" />
+      </Style>
+      <Style Name="Disabled" TextGlowColor="#00000000" TextAlphaFactor="0.35">
+        <BrushLayer Name="Default" />
+      </Style>
+    </Styles>
+    <SoundProperties>
+      <StateSounds>
+      </StateSounds>
+      <EventSounds>
+        <EventSound EventName="Click" Audio="default" />
+      </EventSounds>
+    </SoundProperties>
+  </Brush>
+</Brushes>

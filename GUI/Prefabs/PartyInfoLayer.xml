@@ -1,0 +1,20 @@
+<Prefab>
+  <Window>
+  <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MaxWidth="300" PositionXOffset="@PositionX" PositionYOffset="@PositionY" Sprite="InitialMenu\main_menu_texture" Brush.AlphaFactor="0.9" IsVisible="@IsVisible">
+  <Children>
+    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+      <Children>
+        <!-- Party name -->
+        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MaxWidth="300" MarginTop="10" HorizontalAlignment="Center" Text="@PartyName" />
+        <!-- Accompany button -->
+        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="20" Command.Click="ExecuteAccompany" UpdateChildrenStates="true">
+          <Children>
+              <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginBottom="15" MarginLeft="15" MarginRight="15" Brush="ClickableText" HorizontalAlignment="Center" Text="Accompany" />
+          </Children>
+        </ButtonWidget>
+      </Children>
+    </ListPanel>
+  </Children>
+  </Widget>
+  </Window>
+</Prefab>
