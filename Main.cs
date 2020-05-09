@@ -32,14 +32,16 @@ namespace Accompany
             if (PartyInputUtils.IsInitialized && ScreenManager.TopScreen is MapScreen && !MapScreen.Instance.IsEscapeMenuOpened
                 && Campaign.Current != null && Campaign.Current.GameStarted && Input.IsKeyPressed(InputKey.RightMouseButton))
             {
-                PartyBase party = PartyInputUtils.GetHoverParty();
-                if (party != null && !party.MobileParty.IsMainParty)
+                if (Game.Current.GameStateManager.ActiveState is MapState mapState && !mapState.AtMenu && !PlayerCaptivity.IsCaptive)
                 {
-                    InformationManager.DisplayMessage(new InformationMessage(ScreenManager.TopScreen.Layers[0].GetType().ToString()));
-                    PartyInfoLayer.Instance.DataSource.IsVisible = true;
-                    PartyInfoLayer.Instance.DataSource.PositionX = (int)(Input.MousePositionPixel.X);
-                    PartyInfoLayer.Instance.DataSource.PositionY = (int)(Input.MousePositionPixel.Y);
-                    PartyInfoLayer.Instance.DataSource.FollowParty = party;
+                    PartyBase party = PartyInputUtils.GetHoverParty();
+                    if (party != null && !party.MobileParty.IsMainParty)
+                    {
+                        PartyInfoLayer.Instance.DataSource.IsVisible = true;
+                        PartyInfoLayer.Instance.DataSource.PositionX = (int)(Input.MousePositionPixel.X);
+                        PartyInfoLayer.Instance.DataSource.PositionY = (int)(Input.MousePositionPixel.Y);
+                        PartyInfoLayer.Instance.DataSource.FollowParty = party;
+                    }
                 }
             }
         }
