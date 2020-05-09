@@ -7,20 +7,18 @@ namespace Accompany
 {
     public class Main : MBSubModuleBase
     {
-        protected override void OnSubModuleLoad()
+        public override void OnGameLoaded(Game game, object initializerObject)
         {
-            PartyInfoLayer.OnInitialize();
-            PartyInfoLayer.AddToGlobalLayer();
-        }
-
-        public override void OnGameInitializationFinished(Game game)
-        {
-            PartyInputUtils.OnInitialize();
+            if (game.GameType is Campaign campaign)
+            {
+                CampaignGameStarter gameInitializer = (CampaignGameStarter)initializerObject;
+                gameInitializer.AddBehavior(new AccompanyCampaignBehavior());
+            }
         }
 
         protected override void OnApplicationTick(float dt)
         {
-            if (Campaign.Current != null && Campaign.Current.GameStarted && Input.IsKeyPressed(InputKey.RightMouseButton))
+            if (PartyInputUtils.IsInitialized && Campaign.Current != null && Campaign.Current.GameStarted && Input.IsKeyPressed(InputKey.RightMouseButton))
             {
                 PartyBase party = PartyInputUtils.GetHoverParty();
                 if (party != null && !party.MobileParty.IsMainParty)

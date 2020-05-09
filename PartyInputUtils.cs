@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 
@@ -16,11 +17,23 @@ namespace Accompany
         private static readonly GameEntity[] _intersectedEntities = new GameEntity[32];
         private static readonly Intersection[] _intersectedInfos = new Intersection[32];
 
+        public static bool IsInitialized { get; private set; }
+
         public static void OnInitialize()
         {
-            _visualsOfEntities = (Dictionary<GameEntity, PartyVisual>)(typeof(MapScreen)
-                .GetProperty("VisualsOfEntities", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-                .GetValue(null));
+            try
+            {
+                _visualsOfEntities = (Dictionary<GameEntity, PartyVisual>) (typeof(MapScreen)
+                    .GetProperty("VisualsOfEntities",
+                        BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+                    .GetValue(null));
+                IsInitialized = true;
+            }
+            catch (Exception)
+            {
+                InformationManager.ShowInquiry(new InquiryData("Error in initializing Accompany", "Accompany mod could not be initialized. Game will continue without this mod.", 
+                    true, false, "I understand", null, null, null));
+            }
         }
 
         public static PartyBase GetHoverParty()

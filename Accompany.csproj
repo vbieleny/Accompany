@@ -132,6 +132,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccompanyCampaignBehavior.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="PartyInputUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
