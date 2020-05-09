@@ -35,6 +35,12 @@ namespace Accompany
             ScreenManager.AddGlobalLayer(PartyInfoLayer.Instance, true);
         }
 
+        public static void RemoveFromGlobalLayer()
+        {
+            Added = false;
+            ScreenManager.RemoveGlobalLayer(PartyInfoLayer.Instance);
+        }
+
         protected override void OnTick(float dt)
         {
             base.OnTick(dt);

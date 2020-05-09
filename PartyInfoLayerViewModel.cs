@@ -17,7 +17,7 @@ namespace Accompany
         public void Tick(float dt)
         {
             if (!PartyInfoLayer.Added) return;
-            if (MapScreen.Instance != null && MapScreen.Instance.SceneLayer.Input.IsHotKeyReleased("MapClick"))
+            if (MapScreen.Instance != null && Input.IsKeyPressed(InputKey.LeftMouseButton))
             {
                 _mousePosition.X = Input.MousePositionPixel.X;
                 _mousePosition.Y = Input.MousePositionPixel.Y;
