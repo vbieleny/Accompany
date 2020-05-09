@@ -1,5 +1,7 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using SandBox.View.Map;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade;
 
@@ -27,11 +29,13 @@ namespace Accompany
 
         protected override void OnApplicationTick(float dt)
         {
-            if (PartyInputUtils.IsInitialized && Campaign.Current != null && Campaign.Current.GameStarted && Input.IsKeyPressed(InputKey.RightMouseButton))
+            if (PartyInputUtils.IsInitialized && ScreenManager.TopScreen is MapScreen && !MapScreen.Instance.IsEscapeMenuOpened
+                && Campaign.Current != null && Campaign.Current.GameStarted && Input.IsKeyPressed(InputKey.RightMouseButton))
             {
                 PartyBase party = PartyInputUtils.GetHoverParty();
                 if (party != null && !party.MobileParty.IsMainParty)
                 {
+                    InformationManager.DisplayMessage(new InformationMessage(ScreenManager.TopScreen.Layers[0].GetType().ToString()));
                     PartyInfoLayer.Instance.DataSource.IsVisible = true;
                     PartyInfoLayer.Instance.DataSource.PositionX = (int)(Input.MousePositionPixel.X);
                     PartyInfoLayer.Instance.DataSource.PositionY = (int)(Input.MousePositionPixel.Y);
