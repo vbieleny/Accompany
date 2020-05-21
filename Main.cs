@@ -35,7 +35,7 @@ namespace Accompany
                 if (Game.Current.GameStateManager.ActiveState is MapState mapState && !mapState.AtMenu && !PlayerCaptivity.IsCaptive)
                 {
                     PartyBase party = PartyInputUtils.GetHoverParty();
-                    if (party != null && !party.MobileParty.IsMainParty)
+                    if (party != null && !party.MobileParty.IsMainParty && party.IsVisible)
                     {
                         PartyInfoLayer.Instance.DataSource.IsVisible = true;
                         PartyInfoLayer.Instance.DataSource.PositionX = (int)(Input.MousePositionPixel.X);
