@@ -24,7 +24,6 @@ namespace Accompany
         {
             PartyInputUtils.OnInitialize();
             PartyInfoLayer.OnInitialize();
-            PartyInfoLayer.AddToGlobalLayer();
         }
 
         private void OnGameEnd()
