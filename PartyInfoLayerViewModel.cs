@@ -39,7 +39,7 @@ namespace Accompany
             {
                 Campaign.Current.SetTimeSpeed(1);
             }
-            MapScreen.Instance.CurrentCameraFollowMode = MapScreen.CameraFollowMode.FollowParty;
+            MapScreen.Instance.CameraFollowMode = true;
             Campaign.Current.CameraFollowParty = PartyBase.MainParty;
             IsVisible = false;
         }
