@@ -30,7 +30,8 @@ namespace Accompany
         protected override void OnApplicationTick(float dt)
         {
             if (PartyInputUtils.IsInitialized && ScreenManager.TopScreen is MapScreen && !MapScreen.Instance.IsEscapeMenuOpened
-                && Campaign.Current != null && Campaign.Current.GameStarted && Input.IsKeyPressed(InputKey.RightMouseButton))
+                && Campaign.Current != null && Campaign.Current.GameStarted && Input.IsKeyPressed(InputKey.RightMouseButton)
+                && !MapScreen.Instance.EncyclopediaScreenManager.IsEncyclopediaOpen)
             {
                 if (Game.Current.GameStateManager.ActiveState is MapState mapState && !mapState.AtMenu && !PlayerCaptivity.IsCaptive)
                 {

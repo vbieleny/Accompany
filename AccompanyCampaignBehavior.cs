@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.Core;
 
@@ -6,6 +7,8 @@ namespace Accompany
 {
     class AccompanyCampaignBehavior : CampaignBehaviorBase
     {
+        private TutorialContexts _lastContext = TutorialContexts.None;
+
         public override void RegisterEvents()
         {
             CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, OnGameStart);
@@ -35,19 +38,21 @@ namespace Accompany
         {
             if (changeEvent.NewContext == TutorialContexts.MapWindow)
             {
-                if (!PartyInfoLayer.Added)
-                {
-                    PartyInfoLayer.AddToGlobalLayer();
-                }
+                AddToGlobalLayer();
+            }
+            else if (changeEvent.NewContext == TutorialContexts.EncyclopediaWindow)
+            {
+                RemoveFromGlobalLayer();
+            }
+            else if (_lastContext == TutorialContexts.EncyclopediaWindow && changeEvent.NewContext == TutorialContexts.None)
+            {
+                AddToGlobalLayer();
             }
             else if (changeEvent.NewContext == TutorialContexts.None)
             {
-                if (PartyInfoLayer.Added)
-                {
-                    PartyInfoLayer.Instance.DataSource.IsVisible = false;
-                    PartyInfoLayer.RemoveFromGlobalLayer();
-                }
+                RemoveFromGlobalLayer();
             }
+            _lastContext = changeEvent.NewContext;
         }
 
         private void OnGameMenuOpened(MenuCallbackArgs args)
@@ -63,6 +68,23 @@ namespace Accompany
             if (!party.IsVisible && PartyInfoLayer.Instance.DataSource.FollowParty == party)
             {
                 PartyInfoLayer.Instance.DataSource.IsVisible = false;
+            }
+        }
+
+        private void AddToGlobalLayer()
+        {
+            if (!PartyInfoLayer.Added)
+            {
+                PartyInfoLayer.AddToGlobalLayer();
+            }
+        }
+
+        private void RemoveFromGlobalLayer()
+        {
+            if (PartyInfoLayer.Added)
+            {
+                PartyInfoLayer.Instance.DataSource.IsVisible = false;
+                PartyInfoLayer.RemoveFromGlobalLayer();
             }
         }
     }
