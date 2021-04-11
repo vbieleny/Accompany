@@ -5,19 +5,19 @@ using TaleWorlds.Library;
 
 namespace Accompany
 {
-    class PartyInfoLayer : GlobalLayer
+    internal class PartyInfoLayer : GlobalLayer
     {
         public static PartyInfoLayer Instance { get; private set; }
         public PartyInfoLayerViewModel DataSource { get; } = new PartyInfoLayerViewModel();
-        public static bool Added { get; private set; } = false;
+        public static bool Added { get; private set; }
 
         public readonly GauntletMovie Movie;
 
         private PartyInfoLayer()
         {
             var gauntletLayer = new GauntletLayer(1);
-            gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
-            Movie = gauntletLayer.LoadMovie("PartyInfoLayer", DataSource);
+            gauntletLayer.InputRestrictions.SetInputRestrictions();
+            Movie = (GauntletMovie) gauntletLayer.LoadMovie("PartyInfoLayer", DataSource);
             Layer = gauntletLayer;
         }
 
@@ -32,19 +32,19 @@ namespace Accompany
         public static void AddToGlobalLayer()
         {
             Added = true;
-            ScreenManager.AddGlobalLayer(PartyInfoLayer.Instance, true);
+            ScreenManager.AddGlobalLayer(Instance, true);
         }
 
         public static void RemoveFromGlobalLayer()
         {
             Added = false;
-            ScreenManager.RemoveGlobalLayer(PartyInfoLayer.Instance);
+            ScreenManager.RemoveGlobalLayer(Instance);
         }
 
         protected override void OnTick(float dt)
         {
             base.OnTick(dt);
-            DataSource.Tick(dt);
+            DataSource.Tick();
         }
     }
 }

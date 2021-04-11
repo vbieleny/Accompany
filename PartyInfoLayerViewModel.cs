@@ -1,5 +1,6 @@
-﻿using SandBox.View.Map;
-using System.Numerics;
+﻿using System.Numerics;
+using JetBrains.Annotations;
+using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
@@ -7,14 +8,14 @@ using TaleWorlds.Library;
 
 namespace Accompany
 {
-    class PartyInfoLayerViewModel : ViewModel
+    internal class PartyInfoLayerViewModel : ViewModel
     {
-        private PartyBase _followParty;
+        private PartyBase _clickedParty;
         private Vector2 _mousePosition;
         private int _positionX, _positionY;
-        private bool _isVisible;
+        private bool _isVisible, _isShowInEncyclopediaVisible;
 
-        public void Tick(float dt)
+        public void Tick()
         {
             if (!PartyInfoLayer.Added) return;
             if (MapScreen.Instance != null && Input.IsKeyPressed(InputKey.LeftMouseButton))
@@ -32,9 +33,10 @@ namespace Accompany
             }
         }
 
+        [UsedImplicitly]
         private void ExecuteAccompany()
         {
-            MobileParty.MainParty.SetMoveEscortParty(FollowParty.MobileParty);
+            MobileParty.MainParty.SetMoveEscortParty(ClickedParty.MobileParty);
             if (Campaign.Current.GetSimplifiedTimeControlMode() == CampaignTimeControlMode.Stop)
             {
                 Campaign.Current.SetTimeSpeed(1);
@@ -44,14 +46,23 @@ namespace Accompany
             IsVisible = false;
         }
 
-        public PartyBase FollowParty
+        [UsedImplicitly]
+        private void ExecuteShowInEncyclopedia()
         {
-            get => _followParty;
+            if (ClickedParty.IsMobile && ClickedParty.MobileParty.IsLordParty)
+            {
+                Campaign.Current.EncyclopediaManager.GoToLink(ClickedParty.MobileParty.LeaderHero.EncyclopediaLink);
+            }
+        }
+
+        public PartyBase ClickedParty
+        {
+            get => _clickedParty;
             set
             {
-                if (value == _followParty) return;
-                _followParty = value;
-                OnPropertyChanged("PartyName");
+                if (value == _clickedParty) return;
+                _clickedParty = value;
+                OnPropertyChanged(nameof(PartyName));
             }
         }
 
@@ -99,11 +110,23 @@ namespace Accompany
             {
                 if (value == _isVisible) return;
                 _isVisible = value;
-                OnPropertyChanged("IsVisible");
+                OnPropertyChanged(nameof(IsVisible));
             }
         }
 
         [DataSourceProperty]
-        public string PartyName => FollowParty == null ? "Party" : FollowParty.Name.ToString();
+        public bool IsShowInEncyclopediaVisible
+        {
+            get => _isShowInEncyclopediaVisible;
+            set
+            {
+                if (value == _isShowInEncyclopediaVisible) return;
+                _isShowInEncyclopediaVisible = value;
+                OnPropertyChanged(nameof(IsShowInEncyclopediaVisible));
+            }
+        }
+
+        [DataSourceProperty]
+        public string PartyName => ClickedParty == null ? "Party" : ClickedParty.Name.ToString();
     }
 }

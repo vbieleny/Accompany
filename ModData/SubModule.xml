@@ -1,0 +1,28 @@
+<Module>
+    <Name value="Accompany"/>
+    <Id value="Accompany"/>
+    <Version value="v1.0.6"/>
+    <Official value="false"/>
+    <DefaultModule value="false"/>
+    <SingleplayerModule value="true"/>
+    <MultiplayerModule value="false"/>
+    <DependedModules>
+        <DependedModule Id="Native" DependentVersion="e1.5.9"/>
+        <DependedModule Id="SandBoxCore" DependentVersion="e1.5.9"/>
+        <DependedModule Id="Sandbox" DependentVersion="e1.5.9"/>
+        <DependedModule Id="CustomBattle" DependentVersion="e1.5.9"/>
+        <DependedModule Id="StoryMode" DependentVersion="e1.5.9"/>
+    </DependedModules>
+    <SubModules>
+        <SubModule>
+            <Name value="Accompany"/>
+            <DLLName value="Accompany.dll"/>
+            <SubModuleClassType value="Accompany.Main"/>
+            <Tags>
+                <Tag key="DedicatedServerType" value="none"/>
+                <Tag key="IsNoRenderModeElement" value="false"/>
+            </Tags>
+        </SubModule>
+    </SubModules>
+    <Xmls/>
+</Module>
