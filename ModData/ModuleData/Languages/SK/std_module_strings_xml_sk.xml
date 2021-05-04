@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Slovensky" />
+  </tags>
+  <strings>
+    <string id="LxdXABCM" text="Sprevádzať" />
+    <string id="68lxzu0R" text="Ukázať v encyklopédii" />
+    <string id="2grG3IdZ" text="Chyba pri inicializovaní modifikácie Accompany" />
+    <string id="R1SnVOSp" text="Accompany modifikácia nemohla byť inicializovná. Hra bude pokračovať bez tejto modifikácie." />
+    <string id="iaYZG73X" text="Rozumiem" />
+  </strings>
+</base>

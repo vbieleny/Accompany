@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 
 namespace Accompany
 {
@@ -128,5 +129,11 @@ namespace Accompany
 
         [DataSourceProperty]
         public string PartyName => ClickedParty == null ? "Party" : ClickedParty.Name.ToString();
+
+        [DataSourceProperty]
+        public string AccompanyText => new TextObject("{=LxdXABCM}Accompany").ToString();
+        
+        [DataSourceProperty]
+        public string ShowInEncyclopediaText => new TextObject("{=68lxzu0R}Show in Encyclopedia").ToString();
     }
 }

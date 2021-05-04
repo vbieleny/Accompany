@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 
 namespace Accompany
 {
@@ -32,9 +33,11 @@ namespace Accompany
             }
             catch (Exception)
             {
-                InformationManager.ShowInquiry(new InquiryData("Error in initializing Accompany",
-                    "Accompany mod could not be initialized. Game will continue without this mod.",
-                    true, false, "I understand", null, null, null));
+                var title = new TextObject("{=2grG3IdZ}Error in initializing Accompany");
+                var text = new TextObject("{=R1SnVOSp}Accompany mod could not be initialized. Game will continue without this mod.");
+                var affirmativeText = new TextObject("{=iaYZG73X}I understand");
+                InformationManager.ShowInquiry(new InquiryData(title.ToString(), text.ToString(), true, false,
+                    affirmativeText.ToString(), null, null, null));
             }
         }
 

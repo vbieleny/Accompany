@@ -9,13 +9,13 @@
         <!-- Accompany button -->
         <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="20" MarginBottom="15" Command.Click="ExecuteAccompany" UpdateChildrenStates="true">
           <Children>
-              <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="15" MarginRight="15" Brush="ClickableText" HorizontalAlignment="Center" Text="Accompany"/>
+              <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="15" MarginRight="15" Brush="ClickableText" HorizontalAlignment="Center" Text="@AccompanyText"/>
           </Children>
         </ButtonWidget>
         <!-- Show in Encyclopedia button -->
         <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginBottom="15" Command.Click="ExecuteShowInEncyclopedia" UpdateChildrenStates="true" IsVisible="@IsShowInEncyclopediaVisible">
           <Children>
-            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="15" MarginRight="15" Brush="ClickableText" HorizontalAlignment="Center" Text="Show in Encyclopedia"/>
+            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="15" MarginRight="15" Brush="ClickableText" HorizontalAlignment="Center" Text="@ShowInEncyclopediaText"/>
           </Children>
         </ButtonWidget>
       </Children>

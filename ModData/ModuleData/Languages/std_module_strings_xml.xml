@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="English" />
+  </tags>
+  <strings>
+    <string id="LxdXABCM" text="Accompany" />
+    <string id="68lxzu0R" text="Show in Encyclopedia" />
+    <string id="2grG3IdZ" text="Error in initializing Accompany" />
+    <string id="R1SnVOSp" text="Accompany mod could not be initialized. Game will continue without this mod." />
+    <string id="iaYZG73X" text="I understand" />
+  </strings>
+</base>
