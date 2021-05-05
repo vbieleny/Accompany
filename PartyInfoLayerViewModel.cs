@@ -128,7 +128,9 @@ namespace Accompany
         }
 
         [DataSourceProperty]
-        public string PartyName => ClickedParty == null ? "Party" : ClickedParty.Name.ToString();
+        public string PartyName => ClickedParty == null
+            ? new TextObject("{=BINjcIsY}Unknown Party").ToString()
+            : ClickedParty.Name.ToString();
 
         [DataSourceProperty]
         public string AccompanyText => new TextObject("{=LxdXABCM}Accompany").ToString();
