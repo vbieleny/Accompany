@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using SandBox;
 using SandBox.View.Map;
@@ -57,7 +58,7 @@ namespace Accompany
                 if (IntersectedEntities[i] == null) continue;
                 if (!_visualsOfEntities.ContainsKey(IntersectedEntities[i]) ||
                     !IntersectedEntities[i].IsVisibleIncludeParents()) continue;
-                PartyBase party = PartyBase.FindParty(_visualsOfEntities[IntersectedEntities[i]].PartyIndex);
+                var party = FindParty(_visualsOfEntities[IntersectedEntities[i]].PartyIndex);
                 if (!party.IsMobile) continue;
                 hoverParty = party;
                 break;
@@ -67,6 +68,12 @@ namespace Accompany
             Array.Clear(IntersectedEntityIDs, 0, size);
             Array.Clear(IntersectedInfos, 0, size);
             return hoverParty;
+        }
+        
+        private static PartyBase FindParty(int index)
+        {
+            var mobileParty = Campaign.Current.CampaignObjectManager.Find<MobileParty>(x => x.Party.Index == index);
+            return mobileParty != null ? mobileParty.Party : Settlement.All.FirstOrDefault(x => x.Party.Index == index)?.Party;
         }
     }
 }
