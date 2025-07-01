@@ -1,6 +1,6 @@
 <Prefab>
   <Window>
-  <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MaxWidth="300" PositionXOffset="@PositionX" PositionYOffset="@PositionY" Sprite="InitialMenu\main_menu_texture" Brush.AlphaFactor="0.9" IsVisible="@IsVisible">
+  <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MaxWidth="300" PositionXOffset="@PositionX" PositionYOffset="@PositionY" Sprite="General\InitialMenu\main_menu_texture" Brush.AlphaFactor="0.9" IsVisible="@IsVisible">
   <Children>
     <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
       <Children>

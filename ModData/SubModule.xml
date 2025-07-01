@@ -1,17 +1,17 @@
 <Module>
     <Name value="Accompany"/>
     <Id value="Accompany"/>
-    <Version value="v1.0.9"/>
+    <Version value="v2.0.0"/>
     <Official value="false"/>
     <DefaultModule value="false"/>
     <SingleplayerModule value="true"/>
     <MultiplayerModule value="false"/>
     <DependedModules>
-        <DependedModule Id="Native" DependentVersion="e1.6.0"/>
-        <DependedModule Id="SandBoxCore" DependentVersion="e1.6.0"/>
-        <DependedModule Id="Sandbox" DependentVersion="e1.6.0"/>
-        <DependedModule Id="CustomBattle" DependentVersion="e1.6.0"/>
-        <DependedModule Id="StoryMode" DependentVersion="e1.6.0"/>
+        <DependedModule Id="Native" DependentVersion="v1.2.12"/>
+        <DependedModule Id="SandBoxCore" DependentVersion="v1.2.12"/>
+        <DependedModule Id="Sandbox" DependentVersion="v1.2.12"/>
+        <DependedModule Id="CustomBattle" DependentVersion="v1.2.12"/>
+        <DependedModule Id="StoryMode" DependentVersion="v1.2.12"/>
     </DependedModules>
     <SubModules>
         <SubModule>

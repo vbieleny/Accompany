@@ -1,7 +1,9 @@
 ﻿using System.Numerics;
+using System.Reflection;
 using JetBrains.Annotations;
 using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
@@ -19,11 +21,19 @@ namespace Accompany
         public void Tick()
         {
             if (!PartyInfoLayer.Added) return;
-            if (MapScreen.Instance != null && Input.IsKeyPressed(InputKey.LeftMouseButton))
+            if (MapScreen.Instance != null)
             {
-                _mousePosition.X = Input.MousePositionPixel.X;
-                _mousePosition.Y = Input.MousePositionPixel.Y;
-                if (!PartyInfoLayer.Instance.Movie.RootView.Target.IsPointInsideMeasuredArea(_mousePosition))
+                if (Input.IsKeyPressed(InputKey.LeftMouseButton))
+                {
+                    _mousePosition.X = Input.MousePositionPixel.X;
+                    _mousePosition.Y = Input.MousePositionPixel.Y;
+                    if (!PartyInfoLayer.Instance.Movie.RootView.Target.IsPointInsideMeasuredArea(_mousePosition))
+                    {
+                        IsVisible = false;
+                    }                    
+                }
+
+                if (MapScreen.Instance.IsEscapeMenuOpened)
                 {
                     IsVisible = false;
                 }
@@ -37,13 +47,14 @@ namespace Accompany
         [UsedImplicitly]
         private void ExecuteAccompany()
         {
-            MobileParty.MainParty.SetMoveEscortParty(ClickedParty.MobileParty);
+            MobileParty.MainParty.Ai.SetMoveEscortParty(ClickedParty.MobileParty);
             if (Campaign.Current.GetSimplifiedTimeControlMode() == CampaignTimeControlMode.Stop)
             {
                 Campaign.Current.SetTimeSpeed(1);
             }
-            MapScreen.Instance.CurrentCameraFollowMode = MapScreen.CameraFollowMode.FollowParty;
-            Campaign.Current.CameraFollowParty = PartyBase.MainParty;
+            
+            MapCameraViewHelper.GetInstance().SetCameraMode(MapCameraView.CameraFollowMode.FollowParty);
+            PartyBase.MainParty.SetAsCameraFollowParty();
             IsVisible = false;
         }
 
@@ -138,4 +149,25 @@ namespace Accompany
         [DataSourceProperty]
         public string ShowInEncyclopediaText => new TextObject("{=68lxzu0R}Show in Encyclopedia").ToString();
     }
+    
+    public static class MapCameraViewHelper
+    {
+        private static MapCameraView _cachedInstance;
+    
+        public static MapCameraView GetInstance()
+        {
+            if (_cachedInstance != null)
+            {
+                return _cachedInstance;
+            }
+            
+            var instanceProperty = typeof(MapCameraView).GetProperty(
+                "Instance", 
+                BindingFlags.Static | BindingFlags.NonPublic);
+            
+            _cachedInstance = instanceProperty?.GetValue(null) as MapCameraView;
+            return _cachedInstance;
+        }
+    }
+
 }

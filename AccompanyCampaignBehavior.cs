@@ -1,5 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.GameState;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 
 namespace Accompany
@@ -24,7 +26,6 @@ namespace Accompany
 
         private static void OnGameStart(CampaignGameStarter campaignGameStarter)
         {
-            PartyInputUtils.OnInitialize();
             PartyInfoLayer.OnInitialize();
         }
 
@@ -46,7 +47,8 @@ namespace Accompany
                     break;
                 default:
                 {
-                    if (_lastContext == TutorialContexts.EncyclopediaWindow && changeEvent.NewContext == TutorialContexts.None)
+                    if (_lastContext == TutorialContexts.EncyclopediaWindow &&
+                        changeEvent.NewContext == TutorialContexts.None)
                     {
                         AddToGlobalLayer();
                     }
@@ -54,6 +56,7 @@ namespace Accompany
                     {
                         RemoveFromGlobalLayer();
                     }
+
                     break;
                 }
             }

@@ -1,7 +1,6 @@
 ﻿using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.Engine.Screens;
 using TaleWorlds.GauntletUI.Data;
-using TaleWorlds.Library;
+using TaleWorlds.ScreenSystem;
 
 namespace Accompany
 {
@@ -17,7 +16,7 @@ namespace Accompany
         {
             var gauntletLayer = new GauntletLayer(1);
             gauntletLayer.InputRestrictions.SetInputRestrictions();
-            Movie = (GauntletMovie) gauntletLayer.LoadMovie("PartyInfoLayer", DataSource);
+            Movie = (GauntletMovie)gauntletLayer.LoadMovie("PartyInfoLayer", DataSource);
             Layer = gauntletLayer;
         }
 

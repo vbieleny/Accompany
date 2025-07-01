@@ -1,10 +1,11 @@
 ﻿using JetBrains.Annotations;
 using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.Core;
-using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ScreenSystem;
 
 namespace Accompany
 {
@@ -27,9 +28,8 @@ namespace Accompany
 
         protected override void OnApplicationTick(float dt)
         {
-            if (!PartyInputUtils.IsInitialized || !(ScreenManager.TopScreen is MapScreen) ||
-                MapScreen.Instance.IsEscapeMenuOpened || Campaign.Current == null || !Campaign.Current.GameStarted ||
-                !Input.IsKeyPressed(InputKey.RightMouseButton) ||
+            if (!(ScreenManager.TopScreen is MapScreen) || MapScreen.Instance.IsEscapeMenuOpened ||
+                Campaign.Current == null || !Campaign.Current.GameStarted || !Input.IsKeyPressed(InputKey.RightMouseButton) ||
                 MapScreen.Instance.EncyclopediaScreenManager.IsEncyclopediaOpen) return;
             if (!(Game.Current.GameStateManager.ActiveState is MapState mapState) || mapState.AtMenu ||
                 PlayerCaptivity.IsCaptive) return;
